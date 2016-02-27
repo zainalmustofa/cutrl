@@ -1,0 +1,5 @@
+$('#show_url').html("<%= j (render 'form') %>");
+$('#show_url').slideDown(350);
+$('#url_url').val("<%= request.base_url + "/" + @url.slug %>");
+$("#create_url").hide();
+$("#copy_url").show();

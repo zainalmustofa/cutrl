@@ -1,0 +1,6 @@
+p
+  = @url.title
+p 
+  = @url.url
+br
+  = link_to request.base_url + "/" + @url.slug, request.base_url + "/" + @url.slug

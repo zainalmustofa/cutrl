@@ -1,0 +1,18 @@
+h1 Listing urls
+
+table
+  thead
+    tr
+      th id
+      th Original URL
+      th Slug
+
+  tbody
+    - @urls.each do |url|
+      tr
+        td = url.id
+        td = url.url
+        td = link_to url.slug, request.base_url + "/" + url.slug
+br
+
+= link_to 'New Url', root_path
