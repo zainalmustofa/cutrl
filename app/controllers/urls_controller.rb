@@ -10,9 +10,16 @@ class UrlsController < ApplicationController
   # GET /urls/1
   def show
     @url = Url.find_by_slug(params[:slug])
-    if redirect_to @url.url
-      @url.count_click += 1
-      @url.save
+    if @url.present?
+      binding.pry
+      if redirect_to @url.url
+        @url.count_click += 1
+        @url.referer = request.referer
+        @url.save
+      end
+    else
+      @urls = Url.all
+      render :index
     end
   end
 

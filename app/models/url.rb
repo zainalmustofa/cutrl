@@ -5,6 +5,7 @@
 #  id          :integer          not null, primary key
 #  url         :text             not null
 #  title       :text
+#  referer     :string
 #  slug        :string           not null
 #  count_click :integer          default(0)
 #  created_at  :datetime         not null

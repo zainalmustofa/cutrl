@@ -3,5 +3,6 @@
   = f.input :url, label: false, as: :string, placeholder: "Paste in here..", :autofocus => true
   = f.button :submit, id: "create_url", data: { disable_with: "Please wait..." }
   = link_to "copy", "javascript:void(0)", "data-clipboard-action" => "copy", "data-clipboard-target" => "#url_url", id: "copy_url", :style => 'display: none'
+= link_to "all", urls_path
   
 #show_url

@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20160226165437) do
   create_table "urls", force: :cascade do |t|
     t.text     "url",                     null: false
     t.text     "title"
+    t.string   "referer"
     t.string   "slug",                    null: false
     t.integer  "count_click", default: 0
     t.datetime "created_at",              null: false

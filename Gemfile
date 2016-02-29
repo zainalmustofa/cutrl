@@ -33,7 +33,6 @@ gem 'friendly_id'
 gem 'meta-tags'
 # Devise
 gem 'devise'
-gem 'geocoder'
 gem 'mechanize'
 gem "browser"
 

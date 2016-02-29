@@ -5,6 +5,7 @@ table
     tr
       th id
       th Original URL
+      th referer
       th Slug
 
   tbody
@@ -12,6 +13,7 @@ table
       tr
         td = url.id
         td = url.url
+        td = url.referer if url.present? 
         td = link_to url.slug, request.base_url + "/" + url.slug
 br
 
