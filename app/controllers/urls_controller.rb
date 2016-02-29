@@ -11,7 +11,6 @@ class UrlsController < ApplicationController
   def show
     @url = Url.find_by_slug(params[:slug])
     if @url.present?
-      binding.pry
       if redirect_to @url.url
         @url.count_click += 1
         @url.referer = request.referer
