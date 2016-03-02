@@ -12,9 +12,7 @@ class UrlsController < ApplicationController
     @url = Url.find_by_slug(params[:slug])
     if @url.present?
       if redirect_to @url.url
-        @url.count_click += 1
-        @url.referer = request.referer
-        @url.save
+        @url.clicks.build(referer: request.referer, browser: browser.name, is_mobile: "test", country: "test")
       end
     else
       @urls = Url.all

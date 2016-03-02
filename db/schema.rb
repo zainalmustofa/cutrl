@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160226165437) do
+ActiveRecord::Schema.define(version: 20160302121026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "clicks", force: :cascade do |t|
+    t.integer  "url_id"
+    t.text     "referer"
+    t.integer  "count",      default: 0
+    t.string   "browser"
+    t.boolean  "is_mobile"
+    t.string   "country"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "clicks", ["url_id"], name: "index_clicks_on_url_id", using: :btree
 
   create_table "urls", force: :cascade do |t|
     t.text     "url",                     null: false
@@ -26,4 +39,5 @@ ActiveRecord::Schema.define(version: 20160226165437) do
     t.datetime "updated_at",              null: false
   end
 
+  add_foreign_key "clicks", "urls"
 end

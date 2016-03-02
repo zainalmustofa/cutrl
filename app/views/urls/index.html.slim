@@ -13,7 +13,7 @@ table
       tr
         td = url.id
         td = url.url
-        td = url.referer if url.present? 
+        td = url.clicks.count 
         td = link_to url.slug, request.base_url + "/" + url.slug
 br
 
