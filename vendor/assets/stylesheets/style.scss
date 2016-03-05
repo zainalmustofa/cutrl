@@ -1,19 +1,8 @@
 /* Import fonts */
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
 
-* { 
-	margin: 0;
-	padding: 0px;
-    font-family: 'Lato', sans-serif;
-} 
-body { 
-	background: #fff; 
-	margin: 0; 
-	color: #5a5a5a;
-}
-
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif;
 	font-weight: 300;
 }
 
@@ -110,7 +99,7 @@ input {
 	padding: 15px 30px 16px;
 	border: 1px solid #b9b9af;
 	margin-bottom: 10px;
-	background-color: #fff;
+	background-color: #ddd;
 	opacity: 0.9;
 	-webkit-transition: background-color 0.2s;
 	transition: background-color 0.2s;
@@ -164,7 +153,7 @@ input {
 
 /* HEADER SECTION */
 #h {
-	background: url(/assets/header.jpg) no-repeat center top;
+
 	padding-top: 180px;
 	text-align:center;
 	background-attachment: relative;
@@ -208,7 +197,7 @@ input {
 
 #h h1 {
 	font-weight: 700;
-	color: white;
+	color: black;
 	font-size: 40px;
 }
 

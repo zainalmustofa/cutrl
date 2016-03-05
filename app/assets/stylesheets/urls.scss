@@ -2,10 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+* { 
+  margin: 0;
+  padding: 0px;
+    font-family: 'Lato', sans-serif;
+} 
+body { 
+  background: #fff; 
+  margin: 0; 
+  color: #5a5a5a;
+  background-color: #122;
+}
+
+
 #url_url {
   margin-top: 35px;
 }
 
 #show_url {
-  background: #fff;
+  background: #ddd;
 }
