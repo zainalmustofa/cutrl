@@ -1,8 +1,49 @@
-= simple_form_for @url, url: urls_path, remote: true, method: 'post'  do |f|
-  = f.label 'Url'
-  = f.input :url, label: false, as: :string, placeholder: "Paste in here..", :autofocus => true
-  = f.button :submit, id: "create_url", data: { disable_with: "Please wait..." }
-  = link_to "copy", "javascript:void(0)", "data-clipboard-action" => "copy", "data-clipboard-target" => "#url_url", id: "copy_url", :style => 'display: none'
-= link_to "all", urls_path
+/ = simple_form_for @url, url: urls_path, remote: true, method: 'post'  do |f|
+/   = f.label 'Url'
+/   = f.input :url, label: false, as: :string, placeholder: "Paste in here..", :autofocus => true
+/   = f.button :submit, id: "create_url", data: { disable_with: "Please wait..." }
+/   = link_to "copy", "javascript:void(0)", "data-clipboard-action" => "copy", "data-clipboard-target" => "#url_url", id: "copy_url", :style => 'display: none'
+/ = link_to "all", urls_path
   
-#show_url
+/ #show_url
+/ !
+  .####..######..##......##..#######..########..##....##
+  ..##..##....##.##..##..##.##.....##.##.....##.##...##.
+  ..##..##.......##..##..##.##.....##.##.....##.##..##..
+  ..##...######..##..##..##.##.....##.########..#####...
+  ..##........##.##..##..##.##.....##.##...##...##..##..
+  ..##..##....##.##..##..##.##.....##.##....##..##...##.
+  .####..######...###..###...#######..##.....##.##....##
+/! /H
+#h
+  .logo Cturl
+  .container
+    .row
+      .col-md-8.col-md-offset-2.centered
+        h1
+          span.element
+            #typed-strings
+              p New style for shorten.
+              p With many feature and analytic
+          span#typed
+        .mtb
+          = simple_form_for @url, url: urls_path, remote: true, method: 'post'  do |f|
+            = f.input :url, label: false, as: :string, placeholder: "Paste in here..", :autofocus => true
+            = f.button :submit, id: "create_url", class: "button btn btn-conf btn-green", data: { disable_with: "Please wait..." }
+            = link_to "copy", "javascript:void(0)", "data-clipboard-action" => "copy", "data-clipboard-target" => "#url_url", id: "copy_url", :style => 'display: none', class: "button btn btn-conf btn-green"
+          = link_to "all", urls_path
+        #show_url 
+#g
+  .container
+    .row.sponsor.centered
+      .col-sm-2.col-sm-offset-1
+        = image_tag "client1.png"
+        img alt="" src="images/client1.png"
+      .col-sm-2
+        = image_tag "client3.png"
+      .col-sm-2
+        = image_tag "client2.png"
+      .col-sm-2
+        = image_tag "client4.png"
+      .col-sm-2
+        = image_tag "client5.png"

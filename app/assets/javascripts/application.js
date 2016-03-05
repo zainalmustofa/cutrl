@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require clipboard
+//= require typed
 //= require_tree .
 
 $(document).ready(function(){  
