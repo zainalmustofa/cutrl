@@ -1,22 +1,11 @@
-/ = simple_form_for @url, url: urls_path, remote: true, method: 'post'  do |f|
-/   = f.label 'Url'
-/   = f.input :url, label: false, as: :string, placeholder: "Paste in here..", :autofocus => true
-/   = f.button :submit, id: "create_url", data: { disable_with: "Please wait..." }
-/   = link_to "copy", "javascript:void(0)", "data-clipboard-action" => "copy", "data-clipboard-target" => "#url_url", id: "copy_url", :style => 'display: none'
-/ = link_to "all", urls_path
-  
-/ #show_url
-/ !
-  .####..######..##......##..#######..########..##....##
-  ..##..##....##.##..##..##.##.....##.##.....##.##...##.
-  ..##..##.......##..##..##.##.....##.##.....##.##..##..
-  ..##...######..##..##..##.##.....##.########..#####...
-  ..##........##.##..##..##.##.....##.##...##...##..##..
-  ..##..##....##.##..##..##.##.....##.##....##..##...##.
-  .####..######...###..###...#######..##.....##.##....##
-/! /H
 #h
   .logo Cturl
+  .nav
+    - unless user_signed_in?
+      = link_to 'Login', new_user_session_path
+    - else
+      = link_to 'Dashboard', dashboard_path(@user)
+      = link_to 'Logout', destroy_user_session_path, :method => :delete
   .container
     .row
       .col-md-8.col-md-offset-2.centered
@@ -25,13 +14,18 @@
             #typed-strings
               p New style for shorten.
               p With many feature and analytic
+              p Want more feature?
+              p Don miss your link
+              p Just use bookmark and save your link forever!
           span#typed
         .mtb
           = simple_form_for @url, url: urls_path, remote: true, method: 'post'  do |f|
             = f.input :url, label: false, as: :string, placeholder: "Paste in here..", :autofocus => true
             = f.button :submit, id: "create_url", class: "button btn btn-conf btn-green", data: { disable_with: "Please wait..." }
             = link_to "copy", "javascript:void(0)", "data-clipboard-action" => "copy", "data-clipboard-target" => "#url_url", id: "copy_url", :style => 'display: none', class: "button btn btn-conf btn-green"
-          = link_to "all", urls_path
+        - if user_signed_in?
+          - if current_user.admin?
+            = link_to "all", urls_path
         #show_url 
 #g
   .container

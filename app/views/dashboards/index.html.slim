@@ -1,0 +1,19 @@
+h1 Listing dashboards
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @dashboards.each do |dashboard|
+      tr
+        td = link_to 'Show', dashboard
+        td = link_to 'Edit', edit_dashboard_path(dashboard)
+        td = link_to 'Destroy', dashboard, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Dashboard', new_dashboard_path

@@ -32,7 +32,7 @@ class UrlsController < ApplicationController
       @url        = Url.new(url_params)
       @url.slug   = @url.build_slug
       @url.title  = Mechanize.new.get(@url.url).title
-
+      @url.user_id= current_user.id
       respond_to do |format|
         if @url.save
           format.html { redirect_to root_url(@url), notice: "Url successfully created" }
@@ -67,6 +67,6 @@ class UrlsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def url_params
-      params.require(:url).permit(:url, :slug, :count_click)
+      params.require(:url).permit(:url, :slug, :count_click, :user_id)
     end
 end
