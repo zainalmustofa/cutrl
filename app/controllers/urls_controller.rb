@@ -1,7 +1,10 @@
+require 'open-uri'
+
 class UrlsController < ApplicationController
   # before_action :set_url, only: [:show, :edit, :update, :destroy]
   before_action :check_present_url, only: :create
-
+  before_action :is_mobile?, only: :show
+  # after_save    :redirect_url, only: :show
   # GET /urls
   def index
     @urls = Url.all
@@ -9,10 +12,22 @@ class UrlsController < ApplicationController
 
   # GET /urls/1
   def show
-    @url = Url.find_by_slug(params[:slug])
+    @url        = Url.find_by_slug(params[:slug])
+    @ip_detail  = your_country
     if @url.present?
-      if redirect_to @url.url
-        @url.clicks.build(referer: request.referer, browser: browser.name, is_mobile: "test", country: "test")
+
+     click = @url.clicks.create(
+        referer:    request.referer, 
+        browser:    browser.name, 
+        is_mobile:  @mobile.present? ? true : false, 
+        country:    @ip_detail["country"]
+        # ip:         @ip_detail["ip"],
+        # region:     @ip_detail["region"],
+        # loc:        @ip_detail["loc"]
+      )
+
+      if click.save
+        redirect_to @url.url
       end
     else
       @urls = Url.all
@@ -56,6 +71,26 @@ class UrlsController < ApplicationController
   end
 
   private
+
+    def redirect_url
+      redirect_to @url.url
+    end
+
+    def is_mobile?
+      @mobile  = request.env['HTTP_USER_AGENT'].downcase.match(/android|iphone/)
+    end
+
+    def your_country
+      remote_ip = 
+        if request.remote_ip == "127.0.0.1"
+          '180.214.232.73'
+        else
+          request.remote_ip
+        end
+        
+      @ip_detail   = JSON.parse(open('http://ipinfo.io/' + remote_ip).read) 
+    end
+
     def check_present_url
       @url_ready = Url.find_by_url(url_params[:url])
     end

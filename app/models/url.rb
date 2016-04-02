@@ -7,6 +7,7 @@
 #  title       :text
 #  referer     :string
 #  slug        :string           not null
+
 #  count_click :integer          default(0)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -25,5 +26,16 @@ class Url < ActiveRecord::Base
 
   def build_slug
     Array.new(4){[*"A".."Z", *"0".."9"].sample}.join
+  end
+
+  def self.your_country
+    remote_ip = 
+      if request.remote_ip == "127.0.0.1"
+        '180.214.232.73'
+      else
+        request.remote_ip
+      end
+      
+      @ip_detail   = (JSON.parse(open('http://ipinfo.io/' + remote_ip).read) rescue "nil")
   end
 end
