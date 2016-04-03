@@ -25,6 +25,10 @@ class UrlsController < ApplicationController
         # region:     @ip_detail["region"],
         # loc:        @ip_detail["loc"]
       )
+      
+      @url.count_click += 1
+      @url.referer = request.referer rescue nil
+      @url.save
 
       if click.save
         redirect_to @url.url
@@ -44,10 +48,11 @@ class UrlsController < ApplicationController
   # POST /urls
   def create
     unless @url_ready.present?
-      @url        = Url.new(url_params)
-      @url.slug   = @url.build_slug
-      @url.title  = Mechanize.new.get(@url.url).title
-      @url.user_id= current_user.id
+      @url          = Url.new(url_params)
+      @url.slug     = @url.build_slug
+      @url.title    = Mechanize.new.get(@url.url).title
+      @url.user_id  = current_user.id rescue nil
+
       respond_to do |format|
         if @url.save
           format.html { redirect_to root_url(@url), notice: "Url successfully created" }
@@ -59,7 +64,12 @@ class UrlsController < ApplicationController
         end
       end
     else
-      redirect_to root_url, notice: "Your url has been created!"
+      @url = @url_ready
+      respond_to do |format|
+        format.html { redirect_to root_url(@url), notice: "Your url has been created!" }
+        format.js
+        format.json { render action: 'show', status: :created, location: @url }
+      end
     end
 
   end

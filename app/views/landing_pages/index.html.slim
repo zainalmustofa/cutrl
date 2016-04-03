@@ -1,6 +1,6 @@
 #h
   .logo Cturl
-  .nav
+  .navigator
     - unless user_signed_in?
       = link_to 'Login', new_user_session_path
     - else
@@ -32,7 +32,6 @@
     .row.sponsor.centered
       .col-sm-2.col-sm-offset-1
         = image_tag "client1.png"
-        img alt="" src="images/client1.png"
       .col-sm-2
         = image_tag "client3.png"
       .col-sm-2

@@ -1,5 +1,6 @@
 class DashboardsController < ApplicationController
   before_action :set_dashboard, only: [:show, :edit, :update, :destroy]
+  layout "dashboard"
 
   # GET /dashboards
   def index
