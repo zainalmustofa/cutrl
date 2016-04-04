@@ -1,15 +1,25 @@
 .col-sm-9
   h3
-    i.glyphicon.glyphicon-dashboard
-    | "#{@url.main_domain}"
+    i.fa.fa-desktop
+      |  #{@url.main_domain}
   hr/
   .panel.panel-default
     .panel-heading
       h4 #{@url.title}
     .panel-body
       .list-group
-        p #{@url.created_at.strftime("%d %B")}
+        i.fa.fa-calendar
+          p #{@url.created_at.strftime("%d %B")}
         p #{@url.url}
         p #{@url.referer}
+        = fa_icon 'link'
         p #{request.base_url + "/" + @url.slug}
-        p Click Qount: #{@url.count_click}
+        = button_tag "COPY", data: { disable_with: "Please wait..." }, class: "btn btn-default"
+        |  
+        = button_tag "SHARE", data: { disable_with: "Please wait..." }, class: "btn btn-default"
+        br
+        = fa_icon 'bar-chart'
+        p == @url.count_click == 0 ? "No Clicks" : @url.count_click
+
+        = link_to(content_tag(:i,nil,class: 'fa fa-trash-o'),method: :delete,data: {confirm: 'Are you sure?'}) 
+        

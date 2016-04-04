@@ -1,6 +1,5 @@
 h3
-  i.glyphicon.glyphicon-briefcase
-  | Menu
+  = fa_icon 'folder-o', text: 'Bookmark', class: "fa-1x"
 ul.nav.nav-stacked
   li
     hr/
@@ -12,3 +11,5 @@ ul.nav.nav-stacked
           - @urls.each do |url|
             = link_to url.main_domain, dashboard_urls_path(current_user, id: url.id), class: "list-group-item", remote: true
         = paginate @urls
+h3
+  = fa_icon 'bookmark', text: 'Bookmark', class: "fa-1x"
