@@ -9,6 +9,11 @@ class DashboardsController < ApplicationController
 
   # GET /dashboards/1
   def show
+    @urls    = current_user.urls.page(params[:page])
+  end
+
+  def urls
+    @url      = Url.find(params[:id])
   end
 
   # GET /dashboards/new

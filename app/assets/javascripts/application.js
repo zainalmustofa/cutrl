@@ -16,7 +16,21 @@
 //= require turbolinks
 //= require clipboard
 //= require typed
+//= require nprogress
+//= require nprogress-turbolinks
 //= require_tree .
+
+
+NProgress.configure({
+  easing: 'linear',
+  positionUsing: '',
+  speed: 350,
+  trickle: true,
+  trickleSpeed: 250,
+  showSpinner: true,
+  barSelector: '[role="bar"]',
+  spinnerSelector: '[role="spinner"]'
+});
 
 $(document).ready(function(){  
 

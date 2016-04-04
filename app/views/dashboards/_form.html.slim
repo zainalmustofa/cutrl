@@ -1,7 +1,15 @@
-= simple_form_for(@dashboard) do |f|
-  = f.error_notification
-
-  .form-inputs
-
-  .form-actions
-    = f.button :submit
+.col-sm-9
+  h3
+    i.glyphicon.glyphicon-dashboard
+    | "#{@url.main_domain}"
+  hr/
+  .panel.panel-default
+    .panel-heading
+      h4 #{@url.title}
+    .panel-body
+      .list-group
+        p #{@url.created_at.strftime("%d %B")}
+        p #{@url.url}
+        p #{@url.referer}
+        p #{request.base_url + "/" + @url.slug}
+        p Click Qount: #{@url.count_click}

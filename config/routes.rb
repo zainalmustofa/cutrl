@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :dashboards
+  resources :dashboards do
+    get :urls
+  end
   devise_for :users
   get 'landing_pages/index'
   root 'landing_pages#index'

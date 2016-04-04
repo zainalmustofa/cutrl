@@ -7,6 +7,16 @@
 #  title       :text
 #  referer     :string
 #  slug        :string           not null
+#  count_click :integer          default(0)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :integer
+#  main_domain :string
+#
+# Indexes
+#
+#  index_urls_on_user_id  (user_id)
+#
 
 #  count_click :integer          default(0)
 #  created_at  :datetime         not null
@@ -23,6 +33,7 @@ class Url < ActiveRecord::Base
   belongs_to :user
   validates :url, presence: true
   validates :url, format: { with: URI.regexp }, if: Proc.new { |a| a.url.present? }
+  paginates_per 5
 
   def build_slug
     Array.new(4){[*"A".."Z", *"0".."9"].sample}.join

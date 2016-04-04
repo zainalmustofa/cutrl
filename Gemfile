@@ -35,10 +35,12 @@ gem 'meta-tags'
 gem 'devise'
 gem 'mechanize'
 gem "browser"
+gem 'kaminari'
+gem 'nprogress-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'pry-byebug'
+  # gem 'pry-bybug'
   # Rspec
   gem 'rspec-rails'
   gem 'factory_girl_rails'

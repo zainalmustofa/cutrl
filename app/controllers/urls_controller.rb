@@ -48,10 +48,12 @@ class UrlsController < ApplicationController
   # POST /urls
   def create
     unless @url_ready.present?
-      @url          = Url.new(url_params)
-      @url.slug     = @url.build_slug
-      @url.title    = Mechanize.new.get(@url.url).title
-      @url.user_id  = current_user.id rescue nil
+      @url              = Url.new(url_params)
+      @url.slug         = @url.build_slug
+      @url.title        = Mechanize.new.get(@url.url).title
+      @url.user_id      = current_user.id rescue nil
+      main_domain       = @url.url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)
+      @url.main_domain  = main_domain.present? ? main_domain[1] : main_domain[0]
 
       respond_to do |format|
         if @url.save
