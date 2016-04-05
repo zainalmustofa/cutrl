@@ -13,13 +13,14 @@
         p #{@url.url}
         p #{@url.referer}
         = fa_icon 'link'
-        p #{request.base_url + "/" + @url.slug}
-        = button_tag "COPY", data: { disable_with: "Please wait..." }, class: "btn btn-default"
+        #copy_link_result
+        p #{request.base_url + "/" + @url.slug}        
+        = button_tag "COPY", data: { "clipboard-action" =>"copy", "clipboard-target" => "#copy_link_result", "clipboard-text" => "#{request.base_url + "/" + @url.slug}" }, class: "btn btn-default"
         |  
         = button_tag "SHARE", data: { disable_with: "Please wait..." }, class: "btn btn-default"
         br
         = fa_icon 'bar-chart'
-        p == @url.count_click == 0 ? "No Clicks" : @url.count_click
+        p == @url.count_click == 0 ? "No Clicks" : "#{ link_to @url.count_click, "#"}"
 
         = link_to(content_tag(:i,nil,class: 'fa fa-trash-o'),method: :delete,data: {confirm: 'Are you sure?'}) 
         

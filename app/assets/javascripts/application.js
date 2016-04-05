@@ -37,3 +37,9 @@ $(document).ready(function(){
   var clip = new Clipboard('#copy_url');
 
 });
+
+$(document).ready(function(){  
+
+  var clip = new Clipboard('#copy_link_result');
+
+});

@@ -1,0 +1,2 @@
+$('.panel-body-menu').html("<%= j(render(:partial => 'layouts/partial/result_menu')) %>");
+$('#paginator').html('<%= escape_javascript(paginate(@urls, :remote => true).to_s) %>');

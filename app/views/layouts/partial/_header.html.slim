@@ -3,13 +3,13 @@
     .navbar-header
       button.navbar-toggle data-target=".navbar-collapse" data-toggle="collapse" type="button" 
         span.icon-toggle
-      a.navbar-brand href="#"  Control Panel
+      = link_to "Control Panel", root_path, class: "navbar-brand"
     .navbar-collapse.collapse
       ul.nav.navbar-nav.navbar-right
         li.dropdown
           a.dropdown-toggle data-toggle="dropdown" href="#" role="button" 
             i.glyphicon.glyphicon-user
-            | Admin
+            = current_user.username
             span.caret
           ul#g-account-menu.dropdown-menu role="menu" 
             li

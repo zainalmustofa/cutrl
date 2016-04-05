@@ -1,0 +1,3 @@
+.list-group
+  - @urls.each do |url|
+    = link_to url.main_domain, dashboard_urls_path(current_user, id: url.id), class: "list-group-item", remote: true

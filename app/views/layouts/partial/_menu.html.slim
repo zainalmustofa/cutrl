@@ -6,10 +6,11 @@ ul.nav.nav-stacked
     .panel.panel-default
       .panel-heading
         h4 All URL
-      .panel-body
-        .list-group
-          - @urls.each do |url|
-            = link_to url.main_domain, dashboard_urls_path(current_user, id: url.id), class: "list-group-item", remote: true
-        = paginate @urls
+      .panel-body-menu
+        = render 'layouts/partial/result_menu'
+      #paginator
+        = paginate @urls, remote: true
+      br
+        = page_entries_info @urls, :remote => true
 h3
   = fa_icon 'bookmark', text: 'Bookmark', class: "fa-1x"
