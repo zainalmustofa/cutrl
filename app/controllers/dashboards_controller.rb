@@ -16,6 +16,13 @@ class DashboardsController < ApplicationController
     @url      = Url.find(params[:id])
   end
 
+  def details_url
+    @url      = Url.find(params[:dashboard_id])
+    @clicks    = @url.clicks
+    @country   = @url.clicks.pluck(:country)
+    @refer     = @url.clicks.pluck(:referer)
+  end
+
   # GET /dashboards/new
   def new
     @dashboard = Dashboard.new

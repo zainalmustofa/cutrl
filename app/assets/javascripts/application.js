@@ -33,13 +33,13 @@ NProgress.configure({
 });
 
 $(document).ready(function(){  
-
   var clip = new Clipboard('#copy_url');
-
-});
-
-$(document).ready(function(){  
-
-  var clip = new Clipboard('#copy_link_result');
-
+  var clipboard = new Clipboard('.btn');
+  clipboard.on('success', function(e) {
+      console.info('Action:', e.action);
+      console.info('Text:', e.text);
+      $('#copy_button').tooltip();
+      
+      e.clearSelection();
+  });
 });

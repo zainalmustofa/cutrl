@@ -65,6 +65,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    chartkick (1.4.2)
     code_analyzer (0.4.5)
       sexp_processor
     coderay (1.1.1)
@@ -300,6 +301,7 @@ DEPENDENCIES
   browser
   bullet
   capybara
+  chartkick
   coffee-rails (~> 4.1.0)
   database_cleaner
   devise

@@ -1,0 +1,15 @@
+= javascript_include_tag "https://www.google.com/jsapi", "chartkick" 
+= javascript_include_tag "path/to/highcharts.js", "chartkick"
+.header-panel
+  = link_to dashboard_urls_path(current_user, id: @url.id), remote: true do 
+    = fa_icon 'bookmark', class: "fa fa-chevron-left"
+  p Qount Click : #{@clicks.count}
+  p Click on country:
+  p = @country.uniq.first
+  p = @country.count
+  p Referring Channels:
+  p = @refer
+  / - @clicks.each do |p|
+  /   p Country #{p.country}
+  /   p Browser #{p.browser}
+  /   p Mobile #{p.is_mobile}
