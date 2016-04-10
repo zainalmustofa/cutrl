@@ -3,7 +3,7 @@
     i.fa.fa-desktop
       |  #{@url.main_domain}
   hr/
-  .panel.panel-default
+  .panel.panel-default.content
     .panel-heading
       h4 #{@url.title}
     .panel-body
@@ -21,7 +21,7 @@
         br
 
         = fa_icon 'bar-chart'
-        p == @url.count_click == 0 ? "No Clicks" : "#{ link_to @url.count_click, dashboard_details_url_path(@url), :remote => true}"
+        p == @url.count_click == 0 ? "No Clicks" : "#{ link_to @url.count_click, details_url_dashboard_url_path(id: @url), :remote => true}"
 
         = link_to(content_tag(:i,nil,class: 'fa fa-trash-o'),method: :delete,data: {confirm: 'Are you sure?'}) 
         

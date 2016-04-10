@@ -319,6 +319,7 @@ DEPENDENCIES
   meta-tags
   nprogress-rails
   pg (~> 0.15)
+  pry
   pry-rails
   quiet_assets
   rack-mini-profiler

@@ -13,7 +13,9 @@ foo = ->
   console.log 'Callback'
   return
 
-$ ->
+ready = undefined
+
+ready = ->
   $('#typed').typed
     stringsElement: $('#typed-strings')
     typeSpeed: 30

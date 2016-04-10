@@ -1,15 +1,28 @@
-= javascript_include_tag "https://www.google.com/jsapi", "chartkick" 
-= javascript_include_tag "path/to/highcharts.js", "chartkick"
-.header-panel
-  = link_to dashboard_urls_path(current_user, id: @url.id), remote: true do 
-    = fa_icon 'bookmark', class: "fa fa-chevron-left"
-  p Qount Click : #{@clicks.count}
-  p Click on country:
-  p = @country.uniq.first
-  p = @country.count
-  p Referring Channels:
-  p = @refer
-  / - @clicks.each do |p|
-  /   p Country #{p.country}
-  /   p Browser #{p.browser}
-  /   p Mobile #{p.is_mobile}
+.panel-heading
+  h4 #{@url.main_domain}
+.panel-body
+  .header-panel
+    = link_to show_url_dashboard_url_path(id: @url), remote: true do 
+      = fa_icon 'bookmark', class: "fa fa-chevron-left"
+    p.text-center Where click on country:
+    = geo_chart @clicks.group(:country).count
+    hr
+    p.text-center Referring Channels:
+    table.table.table-hover
+      thead
+        tr
+          th No
+          th Referer From
+          th Detail
+      tbody
+      - @clicks.each_with_index do |ref, index|
+        tr
+          td #{index + 1}
+          td #{ref.referer.nil? ? "Darker Link" : ref.referer}
+          td = link_to "Detail", dashboard_url_click_details_referer_path(url_id: @url, click_id: ref.id), remote: true, class: "btn btn-primary btn-xs",  :data => {:toggle=>"tooltip"}, 'data-original-title' => "Click for details", 'data-placement' => 'top'
+    = page_entries_info @clicks, :remote => true
+
+  javascript:
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })

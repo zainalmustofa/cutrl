@@ -12,20 +12,19 @@ class DashboardsController < ApplicationController
     @urls    = current_user.urls.page(params[:page])
   end
 
-  def urls
+  def show_url
     @url      = Url.find(params[:id])
   end
 
   def details_url
-    @url      = Url.find(params[:dashboard_id])
-    @clicks    = @url.clicks
+    @url      = Url.find(params[:id])
+    @clicks    = @url.clicks.page(params[:page])
     @country   = @url.clicks.pluck(:country)
-    @refer     = @url.clicks.pluck(:referer)
   end
 
-  # GET /dashboards/new
-  def new
-    @dashboard = Dashboard.new
+  def details_referer
+    @url      = Url.find(params[:url_id])
+    @click    = Click.find(params[:click_id])
   end
 
   # GET /dashboards/1/edit
