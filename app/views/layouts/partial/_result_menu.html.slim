@@ -1,3 +1,12 @@
 .list-group
-  - @urls.each do |url|
-    = link_to url.main_domain, show_url_dashboard_url_path(current_user, id: url.id), class: "list-group-item", remote: true
+  ul
+    - @urls.each do |url|
+      li
+        = link_to url.main_domain, show_url_dashboard_url_path(current_user, id: url.id), class: "list-group-item ", remote: true
+
+javascript:
+  $('li a').click(function(e) {
+      e.preventDefault();
+      $('a').removeClass('active');
+      $(this).addClass('active');
+  });
