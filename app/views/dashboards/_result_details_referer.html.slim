@@ -4,20 +4,17 @@
   .header-panel
     = link_to details_url_dashboard_url_path(id: @url), remote: true do 
       = fa_icon 'bookmark', class: "fa fa-chevron-left"
-  / .list-group
-  /   i.fa.fa-calendar
-  /     p #{@url.created_at.strftime("%d %B")}
-  /   p #{@url.url}
-  /   p #{@url.referer}
-  /   = fa_icon 'link'
-  /   #copy_link_result
-  /   p.aria-label #{request.base_url + "/" + @url.slug}        
-  /   = button_tag "COPY", data: { "clipboard-text" => "#{request.base_url + "/" + @url.slug}", 'toggle' => 'tooltip' }, class: "btn btn-default", 'data-original-title' => "Copied", 'data-placement' => 'top', id: "copy_button"
-  /   |  
-  /   = button_tag "SHARE", data: { disable_with: "Please wait..." }, class: "btn btn-default"
-  /   br
 
-  /   = fa_icon 'bar-chart'
-  /   p == @url.count_click == 0 ? "No Clicks" : "#{ link_to @url.count_click, details_url_dashboard_url_path(id: @url), :remote => true}"
-
-  /   = link_to(content_tag(:i,nil,class: 'fa fa-trash-o'),method: :delete,data: {confirm: 'Are you sure?'}) 
+    table.table.table-hover
+      thead
+        tr
+          th Count
+          th Browser
+          th From Mobile
+          th Country
+      tbody
+        tr
+          td #{@click.count}
+          td #{@click.browser}
+          td #{@click.is_mobile}
+          td #{@click.country}

@@ -18,6 +18,7 @@
 //= require typed
 //= require nprogress
 //= require nprogress-turbolinks
+//= require js-routes
 //= require_tree .
 
 

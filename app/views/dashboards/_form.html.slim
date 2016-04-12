@@ -20,7 +20,7 @@
         = button_tag "SHARE", data: { disable_with: "Please wait..." , toggle: "modal", target: "#myModal" }, class: "btn btn-default"
         br
         = fa_icon 'bar-chart'
-        p == @url.count_click == 0 ? "No Clicks" : "#{ link_to @url.count_click, details_url_dashboard_url_path(id: @url), :remote => true}"
+        p == @url.count_click == 0 ? "No Clicks" : "#{ link_to @url.count_click, details_url_dashboard_url_path(id: @url), class:"count-chart",:remote => true}"
 
         = link_to(content_tag(:i,nil,class: 'fa fa-trash-o'),method: :delete,data: {confirm: 'Are you sure?'}) 
 
@@ -34,4 +34,5 @@
         h4#myModalLabel.modal-title #{@url.title}
       .modal-body
         = link_to "facebook", "https://www.facebook.com/sharer/sharer.php?u=#{@url.url}", class: "btn btn-primary btn-facebook popup", target: "_blank"
+        |  
         = link_to "twitter", "https://twitter.com/intent/tweet?url=#{request.base_url + "/" + @url.slug}&text=#{@url.title}&hashtags=cutrl", class: "btn btn-primary btn-twitter popup", target: "_blank"

@@ -11,3 +11,14 @@ ready = ->
     $(this).addClass 'active'
     return
   return
+
+
+KeyCheck = (event) ->
+  KeyID = event.keyCode
+  switch KeyID
+    when 8
+      console.log 'backspace'
+      break
+  return
+
+document.addEventListener 'keydown', KeyCheck

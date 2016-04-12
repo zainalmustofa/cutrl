@@ -2,7 +2,7 @@
   h4 #{@url.main_domain}
 .panel-body
   .header-panel
-    = link_to show_url_dashboard_url_path(id: @url), remote: true do 
+    = link_to show_url_dashboard_url_path(id: @url), id:"back-to-show",remote: true do 
       = fa_icon 'bookmark', class: "fa fa-chevron-left"
     p.text-center Where click on country:
     = geo_chart @clicks.group(:country).count
