@@ -6,3 +6,6 @@ p
   = @url.url
 br
   = link_to request.base_url + "/" + @url.slug, request.base_url + "/" + @url.slug
+
+p 
+  = button_tag "COPY", data: { "clipboard-text" => "#{request.base_url + "/" + @url.slug}", 'toggle' => 'tooltip' }, class: "btn btn-success btn-xs", 'data-original-title' => "Copied", 'data-placement' => 'top', id: "copy_button", :style => 'display: none'

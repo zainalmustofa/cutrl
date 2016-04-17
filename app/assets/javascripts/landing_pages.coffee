@@ -36,3 +36,18 @@ ready = ->
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
+
+
+ready = undefined
+ready = ->
+
+  $('#clear_url').click ->
+    $('#url_url').val ''
+    $('#create_url').show()
+    $('#clear_url').hide()
+    $('#copy_url').hide()
+    $('#copy_button').show()
+    return
+
+$(document).ready(ready)
+$(document).on('page:load', ready)

@@ -50,19 +50,21 @@ class UrlsController < ApplicationController
     unless @url_ready.present?
       @url              = Url.new(url_params)
       @url.slug         = @url.build_slug
-      @url.title        = Mechanize.new.get(@url.url).title
-      @url.user_id      = current_user.id rescue nil
-      main_domain       = @url.url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)
-      @url.main_domain  = main_domain.present? ? main_domain[1] : main_domain[0]
 
       respond_to do |format|
         if @url.save
-          format.html { redirect_to root_url(@url), notice: "Url successfully created" }
+          @main_domain =  @url.url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)
+          @url.update(
+            title: Mechanize.new.get(@url.url).title,
+            user_id: (current_user.id rescue nil),
+            main_domain: @main_domain.present? ? @main_domain[1] : @main_domain[0]
+             )
           format.js
-          format.json { render action: 'show', status: :created, location: @url }
         else
-          format.html { render action: 'new' }
-          format.json { render json: @url.errors, status: :unprocessable_entity }
+          format.html { 
+            redirect_to root_url(@url)
+            flash[:notice] = 'message'
+            }
         end
       end
     else
@@ -78,8 +80,10 @@ class UrlsController < ApplicationController
 
   # DELETE /urls/1
   def destroy
+    @url = Url.find(params[:id])
     @url.destroy
-    redirect_to urls_url, notice: 'Url was successfully destroyed.'
+    redirect_to dashboard_url
+    flash[:notice] = 'Url was successfully destroyed.'
   end
 
   private
