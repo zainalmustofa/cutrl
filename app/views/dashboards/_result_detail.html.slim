@@ -20,6 +20,7 @@
           td #{index + 1}
           td #{ref.referer.nil? ? "Darker Link" : ref.referer}
           td = link_to "Detail", dashboard_url_click_details_referer_path(url_id: @url, click_id: ref.id), remote: true, class: "btn btn-primary btn-xs",  :data => {:toggle=>"tooltip"}, 'data-original-title' => "Click for details", 'data-placement' => 'top'
+    = paginate @clicks, remote: true
     = page_entries_info @clicks, :remote => true
 
   javascript:
