@@ -1,0 +1,23 @@
+meta name="keywords" content="Short link"
+meta name="description" content="Short link and URL, keep save and track your url" property="og:description"
+meta property="og:title" content="cturl.herokuapp.com"
+meta property="og:type" content="website"
+meta property="og:url" content=request.url
+meta property="og:image" content="#{image_url("meta_image.jpg")}"
+meta property="og:description" content="Short link and URL, keep save and track your url"
+meta name="twitter:description" content="Short link and URL, keep save and track your url"
+meta property="fb:app_id" content="325071077639966"
+meta content="MnktTtikB6XqycGcXTIcUMlwwN6EM-8vup3DHb2coEw" name="google-site-verification"
+/ Facebook sharing SEO
+meta property="og:locale" content="id_ID"
+meta property="og:site_name" content="cturl"
+/ twitter SEO
+meta name="twitter:card" content="summary"
+meta name="twitter:description" content="Short link and URL, keep save and track your url"
+meta property="og:image" itemprop="image" name="twitter:image:src" content="#{image_url("meta_image.jpg")}"
+meta property="og:image" itemprop="image" name="twitter:site" content="@zainalmustofaa"
+meta property="og:image" itemprop="image" name="twitter:creator" content="@zainalmustofaa"
+meta property="og:image" itemprop="image" name="twitter:title" content="Short link and URL, keep save and track your url"
+
+- if request.url == root_url
+  link rel="canonical" href="#{root_url}"
