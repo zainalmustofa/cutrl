@@ -21,6 +21,10 @@
     <%= yield %>
     </div>
   </div>
+  
+  <% unless Rails.env.development? %>
+    <%= render "layouts/partial/footer"%>
+  <% end%>
 <footer class="text-center">Build with <i class="fa fa-heart"></i> and <i class="fa fa-diamond"></i><a href="http://zainalmustofa.github.io"><strong> zainalmustofa</strong></a></footer>
 </body>
 </html>
