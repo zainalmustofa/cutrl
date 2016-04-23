@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Shortlink</title>
+  <title>Shortlink - <%= current_user.slug%></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
+  <%= render 'layouts/partial/favicons'%>
   <%= csrf_meta_tags %>
 </head>
 <body>
