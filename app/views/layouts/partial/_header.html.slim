@@ -17,4 +17,4 @@
             li
               a href="#" 
                 i.glyphicon.glyphicon-lock
-                | Logout
+                = link_to 'Logout', destroy_user_session_path, :method => :delete

@@ -19,6 +19,7 @@
 //= require nprogress
 //= require nprogress-turbolinks
 //= require js-routes
+//= require waitMe.min
 //= require_tree .
 
 
@@ -46,6 +47,23 @@ var ready;
     });
   };
 
+
+
 $(document).ready(ready);
 $(document).on('page:load', ready);
 
+
+$(function() {
+  $(document)  
+    .ajaxStart(function() {
+      $('.panel-body').waitMe({
+        effect: "stretch",
+        text: 'Please wait...',
+        bg: 'rgba(255,255,255,0.7)',
+        color: '#000'
+      });
+    })
+    .ajaxStop(function() {
+      $('.panel-body').waitMe("hide");
+  });
+});
