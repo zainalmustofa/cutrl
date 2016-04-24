@@ -15,6 +15,6 @@
             li
               a href="#"  My Profile
             li
-              a href="#" 
-                i.glyphicon.glyphicon-lock
-                = link_to 'Logout', destroy_user_session_path, :method => :delete
+              = link_to 'Logout', destroy_user_session_path, :method => :delete                
+            li
+              = link_to 'Create New URL', '#'

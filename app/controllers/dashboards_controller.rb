@@ -9,6 +9,7 @@ class DashboardsController < ApplicationController
 
   # GET /dashboards/1
   def show
+    @url = Url.new
     @urls    = current_user.urls.page(params[:page])
   end
 

@@ -1,0 +1,13 @@
+#myModal.modal.fade aria-labelledby="myModalLabel" role="dialog" tabindex="-1" 
+  .modal-dialog role="document" 
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+        h4#myModalLabel.modal-title Create new URL
+      .modal-body
+        = simple_form_for @url, url: urls_path, remote: true, method: 'post'  do |f|
+          = f.input :url, label: false, as: :string, placeholder: "Paste in here..", class: "form-control",:autofocus => true
+          = f.button :submit, id: "create_url", class: "button btn btn-default", data: { disable_with: "Please wait..." }
+          = link_to "Clear", "javascript:void(0)", id: "clear_url", :style => 'display: none', class: "button btn btn-info"
+          = link_to "Copy", "javascript:void(0)", "data-clipboard-action" => "copy", "data-clipboard-target" => "#url_url", id: "copy_url", :style => 'display: none', class: "button btn btn-info"

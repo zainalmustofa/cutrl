@@ -59,6 +59,7 @@ class UrlsController < ApplicationController
             user_id: (current_user.id rescue nil),
             main_domain: @main_domain.present? ? @main_domain[1] : @main_domain[0]
              )
+          flash[:notice] = 'message'
           format.js
         else
           format.html { 
