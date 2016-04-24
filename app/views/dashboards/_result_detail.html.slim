@@ -5,7 +5,7 @@
     = link_to show_url_dashboard_url_path(id: @url), id:"back-to-show",remote: true do 
       = fa_icon 'bookmark', class: "fa fa-chevron-left"
     p.text-center Where click on country:
-    = geo_chart @clicks.group(:country).count
+    = render partial: "geo_chart"
     hr
     p.text-center Referring Channels:
     table.table.table-hover
