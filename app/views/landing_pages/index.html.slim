@@ -21,13 +21,16 @@
               p Just use bookmark and save your link forever!
 
       span#typed
+      .row
+        .col-lg-4.col-lg-offset-4
+          .input-group
+            = simple_form_for @url, url: urls_path, remote: true, method: 'post', html: { class: "form-horizontal"}do |f|
+              = f.input :url, label: false, as: :string, placeholder: "Paste in here..", input_html: { class: 'form-control' },:autofocus => true
+              span.input-group-btn
+                = f.button :submit, id: "create_url", class: "button btn btn-default", data: { disable_with: "Please wait..." }
+              = link_to "Clear", "javascript:void(0)", id: "clear_url", :style => 'display: none', class: "button btn btn-info"
+              = link_to "Copy", "javascript:void(0)", "data-clipboard-action" => "copy", "data-clipboard-target" => "#url_url", id: "copy_url", :style => 'display: none', class: "button btn btn-info"
 
-      .input-group   
-        = simple_form_for @url, url: urls_path, remote: true, method: 'post'  do |f|
-          = f.input :url, label: false, as: :string, placeholder: "Paste in here..", class: "form-control",:autofocus => true
-          = f.button :submit, id: "create_url", class: "button btn btn-default", data: { disable_with: "Please wait..." }
-          = link_to "Clear", "javascript:void(0)", id: "clear_url", :style => 'display: none', class: "button btn btn-info"
-          = link_to "Copy", "javascript:void(0)", "data-clipboard-action" => "copy", "data-clipboard-target" => "#url_url", id: "copy_url", :style => 'display: none', class: "button btn btn-info"
       - if user_signed_in?
         - if current_user.admin?
           = link_to "all", urls_path

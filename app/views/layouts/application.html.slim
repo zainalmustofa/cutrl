@@ -14,7 +14,7 @@ html lang="en"
     = content_for?(:meta_information) ? yield(:meta_information) : render("meta_information")
     = render 'layouts/partial/favicons'
   body
-   = flash_messages
-   = yield 
-   - unless Rails.env.development?
-    = render "layouts/partial/footer"
+    = render "layouts/partial/flash_message", flash: flash
+    = yield 
+    - unless Rails.env.development?
+      = render "layouts/partial/footer"

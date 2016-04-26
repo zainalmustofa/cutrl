@@ -64,7 +64,7 @@ class UrlsController < ApplicationController
         else
           format.html { 
             redirect_to root_url(@url)
-            flash[:notice] = 'message'
+            flash[:notice] = @url.errors.messages[:url][0]
             }
         end
       end

@@ -17,6 +17,7 @@ body {
 
 #url_url {
   margin-top: 35px;
+  width: auto;
 }
 
 #show_url {
@@ -57,4 +58,10 @@ body {
   position: fixed;
   right: 5%;
   bottom: 5%;
+}
+
+.input-group.dashboard {
+  position: absolute;
+  right: 50%;
+  left: 50%;
 }
