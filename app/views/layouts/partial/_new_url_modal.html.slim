@@ -6,6 +6,7 @@
           span aria-hidden="true"  &times;
         h4#myModalLabel.modal-title Create new URL
       .modal-body
+        #show_url 
         = simple_form_for @url, url: urls_path, remote: true, method: 'post'  do |f|
           = f.input :url, label: false, as: :string, placeholder: "Paste in here..", class: "form-control",:autofocus => true
           = f.button :submit, id: "create_url", class: "button btn btn-default", data: { disable_with: "Please wait..." }

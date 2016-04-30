@@ -10,7 +10,7 @@
 </head>
 <body class="waitMe_body">
   <div class="container">
-    <%= flash_messages %>  
+    <%= render "layouts/partial/flash_message", flash: flash %>  
   </div>
 
   <%= render "layouts/partial/header"%>
