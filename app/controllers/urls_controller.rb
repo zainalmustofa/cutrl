@@ -51,21 +51,22 @@ class UrlsController < ApplicationController
       @url              = Url.new(url_params)
       @url.slug         = @url.build_slug
 
-      respond_to do |format|
-        if @url.save
-          @main_domain =  @url.url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)
-          @url.update(
-            title: Mechanize.new.get(@url.url).title,
-            user_id: (current_user.id rescue nil),
-            main_domain: @main_domain.present? ? @main_domain[1] : @main_domain[0]
-             )
+      if @url.save
+        @main_domain =  @url.url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)
+        @url.update(
+          title: Mechanize.new.get(@url.url).title,
+          user_id: (current_user.id rescue nil),
+          main_domain: @main_domain.present? ? @main_domain[1] : @main_domain[0]
+           )
+        respond_to do |format|
           flash[:notice] = 'message'
           format.js
-        else
-          format.html { 
-            redirect_to root_url(@url)
-            flash[:notice] = @url.errors.messages[:url][0]
-            }
+        end
+      else
+        respond_to do |format|
+          flash[:notice] = "invalid, please check"
+          format.html { redirect_to root_url(@url) }
+          format.js
         end
       end
     else
