@@ -7,7 +7,8 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.paths << Emoji.images_path
 Rails.application.config.assets.precompile += %w( icons/* )
 Rails.application.config.assets.precompile += %w( loading.gif )
-Rails.application.config.assets.precompile += %w( waitMe.min.js )
+Rails.application.config.assets.precompile += %w( waitMe.min.js particles.js )
+
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )

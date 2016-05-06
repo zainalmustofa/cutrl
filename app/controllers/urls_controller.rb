@@ -57,7 +57,10 @@ class UrlsController < ApplicationController
           title: Mechanize.new.get(@url.url).title,
           user_id: (current_user.id rescue nil),
           main_domain: @main_domain.present? ? @main_domain[1] : @main_domain[0]
-           )
+          )
+        
+        run_password if params[:url][:password_digest].present?
+
         respond_to do |format|
           flash[:notice] = 'message'
           format.js
@@ -90,6 +93,11 @@ class UrlsController < ApplicationController
 
   private
 
+    def run_password
+      binding.pry
+      @url.password.update!(BCrypt::Password.new(params[:url][:password_digest]))
+    end
+
     def redirect_url
       redirect_to @url.url
     end
@@ -120,6 +128,6 @@ class UrlsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def url_params
-      params.require(:url).permit(:url, :slug, :count_click, :user_id)
+      params.require(:url).permit(:url, :slug, :count_click, :user_id, :password_digest, :ip, :region, :loc)
     end
 end

@@ -1,37 +1,95 @@
-.site-wrapper
-  .site-wrapper-inner
-    .cover-container
-      .masthead.clearfix
-        .inner
-          h3.masthead-brand Cturl
-        .navigator
-          - unless user_signed_in?
-            = link_to 'Login', new_user_session_path
-          - else
-            = link_to 'Dashboard', dashboard_path(current_user)
-            = link_to 'Logout', destroy_user_session_path, :method => :delete
-      span.element
-        #typed-strings
-          .inner.cover
-            h1.cover-heading
-              p New style for shorten.
-              p With many feature and analytic
-              p Want more feature?
-              p Don miss your link
-              p Just use bookmark and save your link forever!
+/! Intro Header
+body#page-top data-spy="scroll" data-target=".navbar-fixed-top" 
 
-      span#typed
+  nav.navbar.navbar-custom.navbar-static-top.second-navbar.navbar-scrolling.top-nav-collapse.affix role="navigation" 
+    .container
+    ul.nav.navbar-nav.navbar-right
+      li.free
+        - unless user_signed_in?
+          = link_to 'Login', new_user_session_path, class: "btn btn-success"
+        - else
+          = link_to 'Dashboard', dashboard_path(current_user), class: "btn btn-success"
+          = link_to 'Logout', destroy_user_session_path, :method => :delete, class: "btn btn-error"
+
+  /! /.navbar-collapse
+  /! /.container
+
+
+  header.intro
+    #particles-js
+    #wrapper
+      .intro-body
+        .container
+          .row
+            .col-md-8.col-md-offset-2
+              h1.brand-heading 
+                span#typed
+              span.element
+                #typed-strings
+                  .inner.cover
+                    h1.cover-heading
+                      p New style for shorten.
+                      p With many feature and analytic
+                      p Want more feature?
+                      p Don miss your link
+                      p Just use bookmark and save your link forever!
+              = simple_form_for @url, url: urls_path, remote: true, method: 'post', html: { class: "form-horizontal"} do |f|
+                .form-group
+                  .input-group
+                    = f.error_notification
+                    = f.input :url, label: false, as: :string, placeholder: "Paste in here..", input_html: { class: 'form-control', id: 'landing-page' }, :autofocus => true
+                    span.input-group-btn
+                      = f.button :submit, id: "create_url", class: "btn btn-success", data: { disable_with: "Please wait..." }
+
+                    = link_to "Clear", "javascript:void(0)", id: "clear_url", :style => 'display: none', class: "button btn btn-info"
+                    = link_to "Copy", "javascript:void(0)", "data-clipboard-action" => "copy", "data-clipboard-target" => "#url_url", id: "copy_url", :style => 'display: none', class: "button btn btn-info"
+              #show_url 
+              a.btn.btn-circle.page-scroll href="#{root_url}#jump" 
+                  i.fa.fa-angle-double-down.animated
+
+  section#jump.jumbotron.marketing
+    .container
+      /! Three columns of text below the carousel
       .row
-        .col-lg-4.col-lg-offset-4
-          .input-group
-            = simple_form_for @url, url: urls_path, remote: true, method: 'post', html: { class: "form-horizontal"}do |f|
-              = f.input :url, label: false, as: :string, placeholder: "Paste in here..", input_html: { class: 'form-control' },:autofocus => true
-              span.input-group-btn
-                = f.button :submit, id: "create_url", class: "button btn btn-default", data: { disable_with: "Please wait..." }
-              = link_to "Clear", "javascript:void(0)", id: "clear_url", :style => 'display: none', class: "button btn btn-info"
-              = link_to "Copy", "javascript:void(0)", "data-clipboard-action" => "copy", "data-clipboard-target" => "#url_url", id: "copy_url", :style => 'display: none', class: "button btn btn-info"
+        .col-sm-8.col-sm-offset-2.col-md-4.col-md-offset-0
+          img.img-circle 
+          p Go beyond ordinary Whois to discover the people or organizations behind a domain name or IP address.
+          p
+            a.btn.btn-success href="#" role="button"  Learn More
 
-      - if user_signed_in?
-        - if current_user.admin?
-          = link_to "all", urls_path
-      #show_url 
+        .col-sm-8.col-sm-offset-2.col-md-4.col-md-offset-0
+          img.img-circle
+          p "Connect the dots", discovering connections between domains, persons, organizations, IP addresses, etc.
+          p
+            a.btn.btn-success href="#" role="button"  Learn More
+
+        .col-sm-8.col-sm-offset-2.col-md-4.col-md-offset-0
+          img.img-circle
+          p Protect tangible and digital assets and intellectual property against cybercrime, brand fraud, and theft.
+          p
+            a.btn.btn-success href="#" role="button"  Learn More
+
+  .footer
+    .container
+      hr.footer-divider/
+      footer
+        ul.list-inline.left
+          li
+            a href="#" 
+              i.fa.fa-fw.fa-lg.fa-rss-square
+          li
+            a href="https://www.facebook.com/znald/" 
+              i.fa.fa-fw.fa-lg.fa-facebook-square
+          li
+            a href="https://twitter.com/zainalmustoofa/" 
+              i.fa.fa-fw.fa-lg.fa-twitter-square
+        ul.list-inline.right
+          li
+            a href="#"  Terms of Service
+          li
+            a href="#"  Privacy Policy
+          li
+            a href="#"  Contact Us
+          li
+          li
+            p © 2016 Cuturl

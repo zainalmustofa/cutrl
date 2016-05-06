@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404135953) do
+ActiveRecord::Schema.define(version: 20160430145433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,15 +51,19 @@ ActiveRecord::Schema.define(version: 20160404135953) do
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "urls", force: :cascade do |t|
-    t.text     "url",                     null: false
+    t.text     "url",                         null: false
     t.text     "title"
     t.string   "referer"
-    t.string   "slug",                    null: false
-    t.integer  "count_click", default: 0
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "slug",                        null: false
+    t.integer  "count_click",     default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "user_id"
     t.string   "main_domain"
+    t.string   "password_digest"
+    t.integer  "ip"
+    t.string   "region"
+    t.string   "loc"
   end
 
   add_index "urls", ["user_id"], name: "index_urls_on_user_id", using: :btree

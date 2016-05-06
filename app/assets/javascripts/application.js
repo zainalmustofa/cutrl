@@ -16,11 +16,16 @@
 //= require turbolinks
 //= require clipboard
 //= require typed
+//= require particles
 //= require nprogress
 //= require nprogress-turbolinks
 //= require js-routes
 //= require waitMe.min
 //= require_tree .
+
+particlesJS.load('particles-js', 'assets/particle.json', function() {
+  console.log('callback - particles.js config loaded');
+});
 
 
 NProgress.configure({
