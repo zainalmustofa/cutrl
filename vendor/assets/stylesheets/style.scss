@@ -7,7 +7,16 @@
 }
 
 #wrapper{
-  margin-top: 30%;
+  min-height: 100%; 
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+      
+.particles-js-canvas-el {
+  position: absolute;
 }
 
 .intro .intro-body {
