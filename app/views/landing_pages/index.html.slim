@@ -1,91 +1,99 @@
-body#page-top data-spy="scroll" data-target=".navbar-fixed-top" 
-
-  nav.navbar.navbar-custom.navbar-static-top.second-navbar.navbar-scrolling.top-nav-collapse.affix role="navigation" 
+body.fh5co-outer
+  header#fh5co-header[role="banner"]
+    nav.navbar.navbar-default.navbar-fixed-top[role="navigation"]
+      .container
+        .navbar-header
+          a.js-fh5co-nav-toggle.fh5co-nav-toggle[href="#" data-toggle="collapse" data-target="#fh5co-navbar" aria-expanded="false" aria-controls="navbar"]
+            i
+          = link_to('ctURL', root_path, class: "navbar-brand")
+        #fh5co-navbar.navbar-collapse.collapse
+          ul.nav.navbar-nav-costume.navbar-right
+            li
+              - unless user_signed_in?
+                = link_to 'Login', '#', class: "btn btn-calltoaction btn-primary", data: {toggle: "modal", target: "#login"}
+              - else
+                = link_to 'Dashboard', dashboard_path(current_user), class: "btn btn-calltoaction btn-primary"
+                = link_to 'Logout', destroy_user_session_path, :method => :delete, class: "btn btn-error"
+  
+  #fh5co-hero
+    a.smoothscroll.animated.bounce.fh5co-arrow[href="#fh5co-main"]
+      i.ti-angle-down
+    .overlay
     .container
-    ul.nav.navbar-nav.navbar-right
-      li.free
-        - unless user_signed_in?
-          = link_to 'Login', new_user_session_path, class: "btn btn-success"
-        - else
-          = link_to 'Dashboard', dashboard_path(current_user), class: "btn btn-success"
-          = link_to 'Logout', destroy_user_session_path, :method => :delete, class: "btn btn-error"
+      .col-md-8.col-md-offset-2
+        .text
+          h1
+            span#typed
+            #typed-strings
+              p New style for shorten.
+              p With many feature and analytic
+              p Want more feature?
+              p Don miss your link
+              p Just use bookmark and save your link forever!
+          = simple_form_for @url, url: urls_path, remote: true, method: 'post', html: { class: "form-horizontal"} do |f|
+            .form-group
+              .input-group
+                = f.error_notification
+                = f.input :url, label: false, as: :string, placeholder: "Paste in here..", input_html: { class: 'form-control', id: 'landing-page' }, :autofocus => true
+                span.input-group-btn
+                  = f.button :submit, id: "create_url", class: "btn btn-success", data: { disable_with: "Please wait..." }
 
+                = link_to "Clear", "javascript:void(0)", id: "clear_url", :style => 'display: none', class: "button btn btn-info"
+                = link_to "Copy", "javascript:void(0)", "data-clipboard-action" => "copy", "data-clipboard-target" => "#url_url", id: "copy_url", :style => 'display: none', class: "button btn btn-info"
+          #show_url            
+  main#fh5co-main[role="main"]
+    section.feature
+      .container
+        .row
+          .col-md-4
+            .feature-item
+              .feature-icon
+                = image_tag('icons/crop.png')
+              .feature-text
+                h3
+                  | Use for Free
+                p
+                  | Lorem ipsum dolor sit amet, 
+                  a[href="#"]
+                    | consectetur
+                  |  adipisicing elit. Quidem reiciendis consequuntur nisi enim similique officiis sint, in sequi iste repellat.
+          .col-md-4
+            .feature-item
+              .feature-icon
+                = image_tag('icons/agenda.png')
+              .feature-text
+                h3
+                  | Crafted with Love
+                p
+                  | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem reiciendis consequuntur nisi enim similique officiis sint, in sequi iste repellat.
+          .col-md-4
+            .feature-item
+              .feature-icon
+                = image_tag('icons/browser.png')
+              .feature-text
+                h3
+                  | Mobile First
+                p
+                  | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem reiciendis consequuntur nisi enim similique officiis sint, in sequi iste repellat.
 
-  header.intro
-    #particles-js
-    #wrapper
-      .intro-body
-        .container
-          .row
-            .col-md-8.col-md-offset-2
-              h1.brand-heading 
-                span#typed
-              span.element
-                #typed-strings
-                  .inner.cover
-                    h1.cover-heading
-                      p New style for shorten.
-                      p With many feature and analytic
-                      p Want more feature?
-                      p Don miss your link
-                      p Just use bookmark and save your link forever!
-              = simple_form_for @url, url: urls_path, remote: true, method: 'post', html: { class: "form-horizontal"} do |f|
-                .form-group
-                  .input-group
-                    = f.error_notification
-                    = f.input :url, label: false, as: :string, placeholder: "Paste in here..", input_html: { class: 'form-control', id: 'landing-page' }, :autofocus => true
-                    span.input-group-btn
-                      = f.button :submit, id: "create_url", class: "btn btn-success", data: { disable_with: "Please wait..." }
-
-                    = link_to "Clear", "javascript:void(0)", id: "clear_url", :style => 'display: none', class: "button btn btn-info"
-                    = link_to "Copy", "javascript:void(0)", "data-clipboard-action" => "copy", "data-clipboard-target" => "#url_url", id: "copy_url", :style => 'display: none', class: "button btn btn-info"
-              #show_url 
-              a.btn.btn-circle.page-scroll href="#{root_url}#jump" 
-                  i.fa.fa-angle-double-down.animated
-
-  section#jump.jumbotron.marketing
+  footer#fh5co-footer[role="contentinfo"]
     .container
-      /! Three columns of text below the carousel
       .row
-        .col-sm-8.col-sm-offset-2.col-md-4.col-md-offset-0
-          img.img-circle 
-          p Go beyond ordinary Whois to discover the people or organizations behind a domain name or IP address.
-          p
-            a.btn.btn-success href="#" role="button"  Learn More
+        .col-md-12
+          .copyright
+            p.text-center
+              small
+                | Build with Love 
+                = link_to('zainalmustofa', 'http://zainalmustofa.github.io', target: "_blank")
+                br
+                | Tamplate by FREEHTML5.co © 2016 Display. All Rights Reserved.
 
-        .col-sm-8.col-sm-offset-2.col-md-4.col-md-offset-0
-          img.img-circle
-          p "Connect the dots", discovering connections between domains, persons, organizations, IP addresses, etc.
-          p
-            a.btn.btn-success href="#" role="button"  Learn More
 
-        .col-sm-8.col-sm-offset-2.col-md-4.col-md-offset-0
-          img.img-circle
-          p Protect tangible and digital assets and intellectual property against cybercrime, brand fraud, and theft.
-          p
-            a.btn.btn-success href="#" role="button"  Learn More
-
-  .footer
-    .container
-      hr.footer-divider/
-      footer
-        ul.list-inline.left
-          li
-            a href="#" 
-              i.fa.fa-fw.fa-lg.fa-rss-square
-          li
-            a href="https://www.facebook.com/znald/" 
-              i.fa.fa-fw.fa-lg.fa-facebook-square
-          li
-            a href="https://twitter.com/zainalmustoofa/" 
-              i.fa.fa-fw.fa-lg.fa-twitter-square
-        ul.list-inline.right
-          li
-            a href="#"  Terms of Service
-          li
-            a href="#"  Privacy Policy
-          li
-            a href="#"  Contact Us
-          li
-          li
-            p © 2016 Cuturl
+#login.modal.fade aria-labelledby="myModalLabel" role="dialog" tabindex="-1" 
+  .modal-dialog role="document" 
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+        h4#myModalLabel.modal-title Join With ctURL
+      .modal-body
