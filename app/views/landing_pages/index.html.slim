@@ -12,10 +12,10 @@ body.fh5co-outer
               - unless user_signed_in?
                 = link_to 'Login', '#', class: "btn btn-calltoaction btn-primary", data: {toggle: "modal", target: "#login"}
               - else
-              li
-                = link_to 'Dashboard', dashboard_path(current_user), class: "btn btn-calltoaction btn-primary"
-              li  
-                = link_to 'Logout', destroy_user_session_path, :method => :delete, class: "btn btn-error"
+                li
+                  = link_to 'Dashboard', dashboard_path(current_user), class: "btn btn-calltoaction btn-primary"
+                li  
+                  = link_to 'Logout', destroy_user_session_path, :method => :delete, class: "btn btn-error"
   
   #fh5co-hero
     a.smoothscroll.animated.bounce.fh5co-arrow[href="#fh5co-main"]
