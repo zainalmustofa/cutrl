@@ -8,15 +8,15 @@ body.fh5co-outer
           = link_to('ctURL', root_path, class: "navbar-brand")
         #fh5co-navbar.navbar-collapse.collapse
           ul.nav.navbar-nav-costume.navbar-right
-            li
-              - unless user_signed_in?
+            - unless user_signed_in?
+              li
                 = link_to 'Login', '#', class: "btn btn-calltoaction btn-primary", data: {toggle: "modal", target: "#login"}
-              - else
-                li
-                  = link_to 'Dashboard', dashboard_path(current_user), class: "btn btn-calltoaction btn-primary"
-                li  
-                  = link_to 'Logout', destroy_user_session_path, :method => :delete, class: "btn btn-error"
-  
+            - else
+              li
+                = link_to 'Dashboard', dashboard_path(current_user), class: "btn btn-calltoaction btn-primary"
+              li  
+                = link_to 'Logout', destroy_user_session_path, :method => :delete, class: "btn btn-error"
+
   #fh5co-hero
     a.smoothscroll.animated.bounce.fh5co-arrow[href="#fh5co-main"]
       i.ti-angle-down
@@ -32,17 +32,18 @@ body.fh5co-outer
               p Want more feature?
               p Don miss your link
               p Just use bookmark and save your link forever!
-          = simple_form_for @url, url: urls_path, remote: true, method: 'post', html: { class: "form-horizontal"} do |f|
-            .form-group
-              .input-group
-                = f.error_notification
-                = f.input :url, label: false, as: :string, placeholder: "Paste in here..", input_html: { class: 'form-control', id: 'landing-page' }, :autofocus => true
-                span.input-group-btn
-                  = f.button :submit, id: "create_url", class: "btn btn-success", data: { disable_with: "Please wait..." }
+          #input-url
+            = simple_form_for @url, url: urls_path, remote: true, method: 'post', html: { class: "form-horizontal"} do |f|
+              .form-group
+                .input-group
+                  = f.error_notification
+                  = f.input :url, label: false, as: :string, placeholder: "Paste in here..", input_html: { class: 'form-control', id: 'landing-page' }, :autofocus => true
+                  span.input-group-btn
+                    = f.button :submit, id: "create_url", class: "btn btn-success", data: { disable_with: "Please wait..." }
 
-                = link_to "Clear", "javascript:void(0)", id: "clear_url", :style => 'display: none', class: "button btn btn-info"
-                = link_to "Copy", "javascript:void(0)", "data-clipboard-action" => "copy", "data-clipboard-target" => "#url_url", id: "copy_url", :style => 'display: none', class: "button btn btn-info"
-          #show_url            
+                  = link_to "Clear", "javascript:void(0)", id: "clear_url", :style => 'display: none', class: "button btn btn-info"
+                  = link_to "Copy", "javascript:void(0)", "data-clipboard-action" => "copy", "data-clipboard-target" => "#url_url", id: "copy_url", :style => 'display: none', class: "button btn btn-info"
+            #show_url            
   main#fh5co-main[role="main"]
     section.feature
       .container

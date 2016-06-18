@@ -56,14 +56,15 @@ class UrlsController < ApplicationController
         @url.update(
           title: Mechanize.new.get(@url.url).title,
           user_id: (current_user.id rescue nil),
-          main_domain: @main_domain.present? ? @main_domain[1] : @main_domain[0]
+          main_domain: @main_domain.present? ? @main_domain[1] : @main_domain[0],
+          valid_url: true          
           )
         
         run_password if params[:url][:password_digest].present?
 
         respond_to do |format|
           flash[:notice] = 'message'
-          format.js
+          format.js 
         end
       else
         respond_to do |format|

@@ -16,6 +16,7 @@
 #  ip              :integer
 #  region          :string
 #  loc             :string
+#  valid_url       :boolean          default(FALSE)
 #
 # Indexes
 #
