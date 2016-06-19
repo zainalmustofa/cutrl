@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   get 'landing_pages/index'
   root 'landing_pages#index'
   get ':slug' => 'urls#show'
+  get ':slug/password' => 'urls#show_password'
+  get ':slug/password_digest' => 'urls#password_digest', as: :password_digest
 end

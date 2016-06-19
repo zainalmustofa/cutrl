@@ -14,28 +14,32 @@ class UrlsController < ApplicationController
   def show
     @url        = Url.find_by_slug(params[:slug])
     @ip_detail  = your_country
-    if @url.present?
-
-     click = @url.clicks.create(
-        referer:    request.referer, 
-        browser:    browser.name, 
-        is_mobile:  @mobile.present? ? true : false, 
-        country:    @ip_detail["country"]
-        # ip:         @ip_detail["ip"],
-        # region:     @ip_detail["region"],
-        # loc:        @ip_detail["loc"]
-      )
-      
-      @url.count_click += 1
-      @url.referer = request.referer rescue nil
-      @url.save
-
-      if click.save
-        redirect_to @url.url
-      end
+    if @url.password_digest.present?
+      render :password
     else
-      @urls = Url.all
-      render :index
+      if @url.present?
+
+       click = @url.clicks.create(
+          referer:    request.referer, 
+          browser:    browser.name, 
+          is_mobile:  @mobile.present? ? true : false, 
+          country:    @ip_detail["country"],
+          ip:         @ip_detail["ip"],
+          region:     @ip_detail["region"],
+          loc:        @ip_detail["loc"]
+        )
+        
+        @url.count_click += 1
+        @url.referer = request.referer rescue nil
+        @url.save
+
+        if click.save
+          redirect_to @url.url
+        end
+      else
+        @urls = Url.all
+        render :index
+      end
     end
   end
 
@@ -78,7 +82,6 @@ class UrlsController < ApplicationController
       respond_to do |format|
         format.html { redirect_to root_url(@url), notice: "Your url has been created!" }
         format.js
-        format.json { render action: 'show', status: :created, location: @url }
       end
     end
 
@@ -92,11 +95,18 @@ class UrlsController < ApplicationController
     flash[:notice] = 'Url was successfully destroyed.'
   end
 
+  def show_password
+    
+  end
+  
+  def password_digest
+    binding.pry
+  end
+
   private
 
     def run_password
-      binding.pry
-      @url.password.update!(BCrypt::Password.new(params[:url][:password_digest]))
+      @url.password.update!(password_digest: (params[:url][:password_digest]))
     end
 
     def redirect_url
@@ -114,7 +124,6 @@ class UrlsController < ApplicationController
         else
           request.remote_ip
         end
-        
       @ip_detail   = JSON.parse(open('http://ipinfo.io/' + remote_ip).read) 
     end
 

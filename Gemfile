@@ -41,10 +41,6 @@ gem "chartkick"
 gem "js-routes"
 gem "bcrypt"
 
-source 'https://rails-assets.org' do
-  gem 'rails-assets-particles.js'
-end
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry'

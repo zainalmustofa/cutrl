@@ -40,9 +40,10 @@ body.fh5co-outer
                   = f.input :url, label: false, as: :string, placeholder: "Paste in here..", input_html: { class: 'form-control', id: 'landing-page' }, :autofocus => true
                   span.input-group-btn
                     = f.button :submit, id: "create_url", class: "btn btn-success", data: { disable_with: "Please wait..." }
-
                   = link_to "Clear", "javascript:void(0)", id: "clear_url", :style => 'display: none', class: "button btn btn-info"
                   = link_to "Copy", "javascript:void(0)", "data-clipboard-action" => "copy", "data-clipboard-target" => "#url_url", id: "copy_url", :style => 'display: none', class: "button btn btn-info"
+              small
+                = link_to "Advance Setting", "#", data: { toggle: "modal", target: "#advance"} 
             #show_url            
   main#fh5co-main[role="main"]
     section.feature
@@ -114,3 +115,25 @@ body.fh5co-outer
             | Cancel
           = f.button :submit, "Log in", class: "button btn btn-custom"
       = render "devise/shared/links" 
+
+#advance.modal.fade aria-labelledby="myModalLabel" role="dialog" tabindex="-1" 
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        button.close[type="button" data-dismiss="modal"]
+          span[aria-hidden="true"]
+            | ×
+          span.sr-only
+            | Close
+        h4.modal-title
+          | Protect your URL with password
+      = simple_form_for @url, url: urls_path, remote: true, method: 'post', html: { class: "form-horizontal", autocomplete: "off" } do |f|
+        .modal-body
+            = f.label "Your URL"
+            = f.input :url, label: false, as: :string, placeholder: "Paste in here..", input_html: { class: 'form-control', id: 'landing-page' }, :autofocus => true
+            = f.label "Your Password"
+            = f.input :password_digest, label: false, as: :password, placeholder: "Your URL pasword", input_html: { class: 'form-control'}
+        .modal-footer
+          button.btn.btn-default[type="button" data-dismiss="modal"]
+            | Cancel
+          = f.button :submit, id: "create_url", class: "btn btn-success", data: { disable_with: "Please wait..." }
