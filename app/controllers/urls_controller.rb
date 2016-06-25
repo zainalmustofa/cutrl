@@ -24,9 +24,9 @@ class UrlsController < ApplicationController
           browser:    browser.name, 
           is_mobile:  @mobile.present? ? true : false, 
           country:    @ip_detail["country"],
-          ip:         @ip_detail["ip"],
-          region:     @ip_detail["region"],
-          loc:        @ip_detail["loc"]
+          ip:         (@ip_detail["ip"] rescue nil),
+          region:     (@ip_detail["region"] rescue nil),
+          loc:        (@ip_detail["loc"] rescue nil)
         )
         
         @url.count_click += 1
@@ -100,13 +100,43 @@ class UrlsController < ApplicationController
   end
   
   def password_digest
-    binding.pry
+    @url        = Url.find_by_slug(params[:slug])
+    @ip_detail  = your_country
+
+    if params[:url][:password_digest] == @url.password_digest
+      if @url.present?
+       click = @url.clicks.create(
+          referer:    request.referer, 
+          browser:    browser.name, 
+          is_mobile:  @mobile.present? ? true : false, 
+          country:    @ip_detail["country"],
+          ip:         (@ip_detail["ip"] rescue nil),
+          region:     (@ip_detail["region"] rescue nil),
+          loc:        (@ip_detail["loc"] rescue nil)
+        )
+        
+        @url.count_click += 1
+        @url.referer = request.referer rescue nil
+        @url.save
+
+        if click.save
+          redirect_to @url.url
+        end
+      else
+        flash[:notice] = 'url not found :('
+        render :password
+      end      
+    else
+      flash[:notice] = 'your password is wrong'
+      render :password
+    end
+
   end
 
   private
 
     def run_password
-      @url.password.update!(password_digest: (params[:url][:password_digest]))
+      @url.password_digest.update(password_digest: (params[:url][:password_digest]))
     end
 
     def redirect_url

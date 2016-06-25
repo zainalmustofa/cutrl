@@ -11,6 +11,11 @@
 #  country    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  ip         :string
+#  region     :string
+#  city       :string
+#  org        :string
+#  loc        :string
 #
 # Indexes
 #
