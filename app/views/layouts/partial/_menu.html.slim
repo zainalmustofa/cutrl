@@ -8,9 +8,5 @@ ul.nav.nav-stacked
         h4 All URL
       .panel-body-menu
         = render 'layouts/partial/result_menu'
-      #paginator
-        = paginate @urls, remote: true
-      br
-        = page_entries_info @urls, :remote => true
 h3
   = fa_icon 'bookmark', text: 'Bookmark', class: "fa-1x"

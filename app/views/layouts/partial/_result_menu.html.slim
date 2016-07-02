@@ -1,8 +1,14 @@
 .list-group
-  ul
-    - @urls.each do |url|
-      li
-        = link_to url.main_domain, show_url_dashboard_url_path(current_user, id: url.id), class: "list-group-item ", remote: true
+  - @urls.each do |url|
+    = link_to show_url_dashboard_url_path(current_user, id: url.id), remote: true, class: "list-group-item" do
+      = url.title[0..20].gsub(/\s\w+$/,'...')
+      span.badge
+        = url.count_click
+
+#paginator
+  = paginate @urls, remote: true
+br
+  = page_entries_info @urls, :remote => true
 
 javascript:
   $('li a').click(function(e) {
