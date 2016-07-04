@@ -8,20 +8,20 @@
   <%= render 'layouts/partial/favicons'%>
   <%= csrf_meta_tags %>
 </head>
-<body class="waitMe_body">
-  <div class="container">
-    <%= render "layouts/partial/flash_message", flash: flash %>  
-  </div>
+<body>
+<div class="wrapper">
+  <%= render "layouts/new_design/menu"%>
+  <div class="main-panel">
+  <%= render "layouts/new_design/navbar_header"%>
 
-  <%= render "layouts/partial/header"%>
-  <div class="container">
-    <div class="row">
-    <div class="col-sm-3">
-      <%= render "layouts/partial/menu"%>
-    </div>
-    <%= yield %>
-    </div>
-  </div>
+
+        <div class="content">
+          <div class="container-fluid">
+            <%= yield %>
+          </div>
+        </div>
+  </div>        
+</div>
   
   <% unless Rails.env.development? %>
     <%= render "layouts/partial/footer"%>

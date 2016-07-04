@@ -1,13 +1,53 @@
-#result
-  .col-sm-9
-    h3
-      i.glyphicon.glyphicon-dashboard
-      | My Url
-    hr/
-    .panel.panel-default
-      .panel-heading
-        h4 All URL
-      .panel-body
-        .list-group
-          .list-group-item 
-            p Please choice your link
+.row
+  .col-md-4
+    .card
+      .header
+        h4.title
+          | My Url
+        p.category
+          | All URL
+      .content
+        #chartPreferences.ct-chart.ct-perfect-fourth
+          .list-group
+            - @urls.each do |url|
+              = link_to show_url_dashboard_url_path(current_user, id: url.id), remote: true, class: "list-group-item" do
+                = url.title[0..20].gsub(/\s\w+$/,'...')
+                span.badge
+                  = url.count_click
+
+          #paginator
+            = paginate @urls, remote: true
+          br
+            = page_entries_info @urls, :remote => true
+        .footer
+          .legend
+            i.fa.fa-circle.text-info
+            |  Please choice your link
+
+  .col-md-8
+    .card.result-content
+      .header
+        h4.title
+          | Please choice your link First
+        p.category
+          | 24 Hours performance
+      .content
+        #chartHours.ct-chart
+        .footer
+          .legend
+            i.fa.fa-circle.text-info
+            |  Open 
+            i.fa.fa-circle.text-danger
+            |  Click 
+            i.fa.fa-circle.text-warning
+            |  Click Second Time 
+          hr
+          .stats
+            i.fa.fa-history
+            |  Updated 3 minutes ago 
+javascript:
+  $('li a').click(function(e) {
+      e.preventDefault();
+      $('a').removeClass('active');
+      $(this).addClass('active');
+  }); 

@@ -20,6 +20,7 @@
 //= require nprogress-turbolinks
 //= require js-routes
 //= require waitMe.min
+//= require light-bootstrap-dashboard
 //= require_tree .
 
 

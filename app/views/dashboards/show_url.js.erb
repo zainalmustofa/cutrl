@@ -1,2 +1,2 @@
-$('#result').html("<%= j (render 'form') %>");
-$('.panel.panel-default').slideShow(5);
+$('.result-content').html("<%= j(render(:partial => 'dashboards/new_design/result_content')) %>");
+$('#paginator').html('<%= escape_javascript(paginate(@urls, :remote => true).to_s) %>');

@@ -1,0 +1,49 @@
+nav.navbar.navbar-default.navbar-fixed
+  .container-fluid
+    .navbar-header
+      .nav-mod
+        button.navbar-toggle[type="button" data-toggle="collapse" data-target="#navigation-example-2"]
+          span.sr-only
+            | Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand[href="javascript:void(0)"]
+          | Dashboard
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-left
+        li
+          a.dropdown-toggle[href="#" data-toggle="dropdown"]
+            i.fa.fa-dashboard
+        li.dropdown
+          a.dropdown-toggle[href="#" data-toggle="dropdown"]
+            i.fa.fa-globe
+            b.caret
+            span.notification
+              | 5
+          ul.dropdown-menu
+            li
+              a[href="#"]
+                | Notification 1
+            li
+              a[href="#"]
+                | Notification 2
+            li
+              a[href="#"]
+                | Notification 3
+            li
+              a[href="#"]
+                | Notification 4
+            li
+              a[href="#"]
+                | Another notification
+        li
+          a[href=""]
+            i.fa.fa-search
+      ul.nav.navbar-nav.navbar-right
+        li
+          a[href=""]
+            |  Account 
+        li
+          a[href="#"]
+            |  Log out 
