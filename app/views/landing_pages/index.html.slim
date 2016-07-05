@@ -40,8 +40,9 @@ body.fh5co-outer
                   = f.input :url, label: false, as: :string, placeholder: "Paste in here..", input_html: { class: 'form-control', id: 'landing-page' }, :autofocus => true
                   span.input-group-btn
                     = f.button :submit, id: "create_url", class: "btn btn-success", data: { disable_with: "Please wait..." }
-                  = link_to "Clear", "javascript:void(0)", id: "clear_url", :style => 'display: none', class: "button btn btn-info"
-                  = link_to "Copy", "javascript:void(0)", "data-clipboard-action" => "copy", "data-clipboard-target" => "#url_url", id: "copy_url", :style => 'display: none', class: "button btn btn-info"
+                  span.input-group-btn
+                    = link_to "Clear", "javascript:void(0)", id: "clear_url", :style => 'display: none', class: "button btn btn-info"
+                    = link_to "Copy", "javascript:void(0)", "data-clipboard-action" => "copy", "data-clipboard-target" => "#url_url", id: "copy_url", :style => 'display: none', class: "button btn btn-info"
               small
                 = link_to "Advance Setting", "#", data: { toggle: "modal", target: "#advance"} 
             #show_url            
@@ -57,10 +58,7 @@ body.fh5co-outer
                 h3
                   | Use for Free
                 p
-                  | Lorem ipsum dolor sit amet, 
-                  a[href="#"]
-                    | consectetur
-                  |  adipisicing elit. Quidem reiciendis consequuntur nisi enim similique officiis sint, in sequi iste repellat.
+                  | Make it easy for your business by using the url short url, because it is very important for today
           .col-md-4
             .feature-item
               .feature-icon
@@ -69,16 +67,16 @@ body.fh5co-outer
                 h3
                   | Crafted with Love
                 p
-                  | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem reiciendis consequuntur nisi enim similique officiis sint, in sequi iste repellat.
+                  | Do not let you lose an important link url, save your url with safe here
           .col-md-4
             .feature-item
               .feature-icon
                 = image_tag('icons/browser.png')
               .feature-text
                 h3
-                  | Mobile First
+                  | Full Analysis
                 p
-                  | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem reiciendis consequuntur nisi enim similique officiis sint, in sequi iste repellat.
+                  | We provides the best analysis of all the URLs you need.
 
   footer#fh5co-footer[role="contentinfo"]
     .container
@@ -116,36 +114,64 @@ body.fh5co-outer
           = f.button :submit, "Log in", class: "button btn btn-custom"
       = render "devise/shared/links" 
 
-#advance.modal.fade aria-labelledby="myModalLabel" role="dialog" tabindex="-1" 
+#advance.modal.fade.bs-modal-sm[tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"]
   .modal-dialog.modal-sm
     .modal-content
-      .modal-header
-        button.close[type="button" data-dismiss="modal"]
-          span[aria-hidden="true"]
-            | ×
-          span.sr-only
+      br
+      .bs-example.bs-example-tabs
+        ul#myTabs.nav.nav-tabs
+          li.li-password
+            a[href="#password" data-toggle="tab"]
+              | URL password
+          li.li-custome
+            a[href="#custome" data-toggle="tab"]
+              | Custome URL
+      .modal-body[style="padding:0px"]
+        #myTabContent.tab-content
+          #password.tab-pane.fade.in
+            = simple_form_for @url, url: urls_path, remote: true, method: 'post', html: { class: "form-horizontal", autocomplete: "off" } do |f|
+              fieldset
+                .col-lg-12[style="padding-bottom:20px"]
+                  label.control-label[for="discount"]
+                    | Protect your URL with password
+                  hr
+                  = f.label "Your URL"
+                  = f.input :url, label: false, as: :string, placeholder: "Paste in here..", input_html: { class: 'form-control', id: 'landing-page' }, :autofocus => true
+                  = f.label "Your Password"
+                  = f.input :password_digest, label: false, as: :password, placeholder: "Your URL pasword", input_html: { class: 'form-control'}
+                  .col-lg-12[style="padding-bottom:20px"]
+                    .control-group
+                      label.control-label[for="discount"]
+                      .controls
+                        = f.button :submit, id: "create_url", class: "btn btn-success", data: { disable_with: "Please wait..." }
+          #custome.tab-pane.fade.in
+            = simple_form_for @url, url: urls_path, remote: true, method: 'post', html: { class: "form-horizontal", autocomplete: "off" } do |f|
+              fieldset
+                .col-lg-12[style="padding-bottom:20px"]
+                  label.control-label[for="discount"]
+                    | Customize your URL
+                  hr
+                  = f.label "Your URL"
+                  = f.input :url, label: false, as: :string, placeholder: "Paste in here..", input_html: { class: 'form-control', id: 'landing-page' }, :autofocus => true
+                  = f.label "What do you want?"
+                  = f.input :mod_url, label: false, as: :string, placeholder: "whatever you want", input_html: { class: 'form-control'}
+                  .col-lg-12[style="padding-bottom:20px"]
+                    .control-group
+                      label.control-label[for="discount"]
+                      .controls
+                        = f.button :submit, id: "create_url", class: "btn btn-success", data: { disable_with: "Please wait..." }
+      .modal-footer
+        center
+          button.btn.btn-default[type="button" data-dismiss="modal"]
             | Close
-        h4.modal-title
-          | Protect your URL with password
-      / #password_url
-      /   = simple_form_for @url, url: urls_path, remote: true, method: 'post', html: { class: "form-horizontal", autocomplete: "off" } do |f|
-      /     .modal-body
-      /         = f.label "Your URL"
-      /         = f.input :url, label: false, as: :string, placeholder: "Paste in here..", input_html: { class: 'form-control', id: 'landing-page' }, :autofocus => true
-      /         = f.label "Your Password"
-      /         = f.input :password_digest, label: false, as: :password, placeholder: "Your URL pasword", input_html: { class: 'form-control'}
-      /     .modal-footer
-      /       button.btn.btn-default[type="button" data-dismiss="modal"]
-      /         | Cancel
-      /       = f.button :submit, id: "create_url", class: "btn btn-success", data: { disable_with: "Please wait..." }
-      #mod_url
-        = simple_form_for @url, url: urls_path, remote: true, method: 'post', html: { class: "form-horizontal", autocomplete: "off" } do |f|
-          .modal-body
-              = f.label "Your URL"
-              = f.input :url, label: false, as: :string, placeholder: "Paste in here..", input_html: { class: 'form-control', id: 'landing-page' }, :autofocus => true
-              = f.label "What do you want?"
-              = f.input :mod_url, label: false, as: :string, placeholder: "whatever you want", input_html: { class: 'form-control'}
-          .modal-footer
-            button.btn.btn-default[type="button" data-dismiss="modal"]
-              | Cancel
-            = f.button :submit, id: "create_url", class: "btn btn-success", data: { disable_with: "Please wait..." }
+
+
+javascript:
+  $('#change-button-custome').click(function() {
+    document.getElementById('password_url').style.display = 'none';
+    document.getElementById('mod_url').style.display = 'block';
+  });
+  $('#change-button-password').click(function() {
+    document.getElementById('password_url').style.display = 'block';
+    document.getElementById('mod_url').style.display = 'none';
+  });
