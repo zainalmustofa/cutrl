@@ -17,6 +17,7 @@
 #  region          :string
 #  loc             :string
 #  valid_url       :boolean          default(FALSE)
+#  mod_url         :string
 #
 # Indexes
 #
@@ -37,6 +38,8 @@ class Url < ActiveRecord::Base
   has_many :clicks, dependent: :destroy
   belongs_to :user
   validates :url, presence: true
+  validates :slug, uniqueness: true
+  validates :mod_url, uniqueness: true
   validates_format_of :url, :with => URI::regexp(%w(http https))
   # validates :url, format: { with: URI.regexp }, if: Proc.new { |a| a.url.present? }
 

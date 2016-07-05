@@ -127,13 +127,25 @@ body.fh5co-outer
             | Close
         h4.modal-title
           | Protect your URL with password
-      = simple_form_for @url, url: urls_path, remote: true, method: 'post', html: { class: "form-horizontal", autocomplete: "off" } do |f|
-        .modal-body
-            = f.label "Your URL"
-            = f.input :url, label: false, as: :string, placeholder: "Paste in here..", input_html: { class: 'form-control', id: 'landing-page' }, :autofocus => true
-            = f.label "Your Password"
-            = f.input :password_digest, label: false, as: :password, placeholder: "Your URL pasword", input_html: { class: 'form-control'}
-        .modal-footer
-          button.btn.btn-default[type="button" data-dismiss="modal"]
-            | Cancel
-          = f.button :submit, id: "create_url", class: "btn btn-success", data: { disable_with: "Please wait..." }
+      / #password_url
+      /   = simple_form_for @url, url: urls_path, remote: true, method: 'post', html: { class: "form-horizontal", autocomplete: "off" } do |f|
+      /     .modal-body
+      /         = f.label "Your URL"
+      /         = f.input :url, label: false, as: :string, placeholder: "Paste in here..", input_html: { class: 'form-control', id: 'landing-page' }, :autofocus => true
+      /         = f.label "Your Password"
+      /         = f.input :password_digest, label: false, as: :password, placeholder: "Your URL pasword", input_html: { class: 'form-control'}
+      /     .modal-footer
+      /       button.btn.btn-default[type="button" data-dismiss="modal"]
+      /         | Cancel
+      /       = f.button :submit, id: "create_url", class: "btn btn-success", data: { disable_with: "Please wait..." }
+      #mod_url
+        = simple_form_for @url, url: urls_path, remote: true, method: 'post', html: { class: "form-horizontal", autocomplete: "off" } do |f|
+          .modal-body
+              = f.label "Your URL"
+              = f.input :url, label: false, as: :string, placeholder: "Paste in here..", input_html: { class: 'form-control', id: 'landing-page' }, :autofocus => true
+              = f.label "What do you want?"
+              = f.input :mod_url, label: false, as: :string, placeholder: "whatever you want", input_html: { class: 'form-control'}
+          .modal-footer
+            button.btn.btn-default[type="button" data-dismiss="modal"]
+              | Cancel
+            = f.button :submit, id: "create_url", class: "btn btn-success", data: { disable_with: "Please wait..." }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160625153503) do
+ActiveRecord::Schema.define(version: 20160705041609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20160625153503) do
     t.string   "region"
     t.string   "loc"
     t.boolean  "valid_url",       default: false
+    t.string   "mod_url"
   end
 
   add_index "urls", ["user_id"], name: "index_urls_on_user_id", using: :btree

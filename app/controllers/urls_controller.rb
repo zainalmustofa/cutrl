@@ -51,9 +51,15 @@ class UrlsController < ApplicationController
 
   # POST /urls
   def create
-    unless @url_ready.present?
+    unless @url_ready.present? || @url_mod_ready.present?
       @url              = Url.new(url_params)
-      @url.slug         = @url.build_slug
+
+      if params[:url][:mod_url].present?
+        @url.slug         = params[:url][:mod_url]
+      else
+        @url.slug         = @url.build_slug
+      end
+
       if @url.save
         @main_domain =  @url.url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)
         @url.update(
@@ -160,6 +166,10 @@ class UrlsController < ApplicationController
       @url_ready = Url.find_by_url(url_params[:url])
     end
 
+    def check_present_url_mod
+      @url_mod_ready = Url.find_by_slug(url_params[:url])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_url
       @url = Url.find(params[:id])
@@ -167,6 +177,6 @@ class UrlsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def url_params
-      params.require(:url).permit(:url, :slug, :count_click, :user_id, :password_digest, :ip, :region, :loc)
+      params.require(:url).permit(:url, :slug, :count_click, :user_id, :password_digest, :ip, :region, :loc, :mod_url)
     end
 end
