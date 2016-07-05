@@ -8,21 +8,30 @@
       h4 #{@url.title}
     .panel-body
       .list-group
-        i.fa.fa-calendar
-          p #{@url.created_at.strftime("%d %B")}
-        p #{@url.url}
-        p #{@url.referer}
-        = fa_icon 'link'
+        span.fa-stack.fa-lg
+          i.fa.fa-calendar.fa-stack-1x
+        | #{@url.created_at.strftime("%d %B")}
+        br
+        span.fa-stack.fa-lg
+          i.fa.fa-link.fa-stack-1x
+        | #{@url.url}
+        | #{@url.referer}
         #copy_link_result
-        p.aria-label #{request.base_url + "/" + @url.slug}        
+        span.fa-stack.fa-lg
+          i.fa.fa-scissors.fa-stack-1x
+        | #{request.base_url + "/" + @url.slug} 
+        br
+        span.fa-stack.fa-lg
+          i.fa.fa-bar-chart.fa-stack-1x
+        == @url.count_click == 0 ? "No Clicks" : "#{ link_to @url.count_click, details_url_dashboard_url_path(id: @url), class:"count-chart",:remote => true}"
+        br
         = button_tag "COPY", data: { "clipboard-text" => "#{request.base_url + "/" + @url.slug}", 'toggle' => 'tooltip' }, class: "btn btn-success", 'data-original-title' => "Copied", 'data-placement' => 'top', id: "copy_button"
         |  
         = button_tag "SHARE", data: { disable_with: "Please wait..." , toggle: "modal", target: "#myModal" }, class: "btn btn-primary"
-        br
-        = fa_icon 'bar-chart'
-        p == @url.count_click == 0 ? "No Clicks" : "#{ link_to @url.count_click, details_url_dashboard_url_path(id: @url), class:"count-chart",:remote => true}"
-        = link_to(content_tag(:i, dashboard_url_path(current_user, @url), :method => :delete ,class: 'fa fa-trash-o'), data: {confirm: 'Are you sure?'}) 
 
+        = link_to dashboard_path(@url), :method => :delete, data: {confirm: 'Are you sure?'}, :remote => true, class: "btn btn-danger" do
+          i.fa.fa-trash-o.fa-lg
+          | delete
 
 #myModal.modal.fade aria-labelledby="myModalLabel" role="dialog" tabindex="-1" 
   .modal-dialog role="document" 

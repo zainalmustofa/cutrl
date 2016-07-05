@@ -33,9 +33,12 @@ h2.resp-accordion {
     text-align: left;
     box-shadow: none;
 }
-.text-center .resp-tab-content,
-.text-center .resp-accordion {
-    text-align: left;
+.text-center {
+    text-align: center;
+    display: block;
+    bottom: 0px;
+    position: absolute;
+    width: 100%;
 }
 
 .resp-tab-active {

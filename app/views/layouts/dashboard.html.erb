@@ -9,11 +9,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="waitMe_body">
+  <%= render "layouts/partial/header"%>
   <div class="container">
     <%= render "layouts/partial/flash_message", flash: flash %>  
   </div>
-
-  <%= render "layouts/partial/header"%>
   <div class="container">
     <div class="row">
     <div class="col-sm-3">

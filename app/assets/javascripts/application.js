@@ -68,9 +68,9 @@ $(function() {
   });
 });
 
-if (navigator.serviceWorker) {
-  navigator.serviceWorker.register('/sw.js')
-    .then(function(reg) {
-      console.log(reg.scope, 'register');
-    });
-}
+// if (navigator.serviceWorker) {
+//   navigator.serviceWorker.register('/sw.js')
+//     .then(function(reg) {
+//       console.log(reg.scope, 'register');
+//     });
+// }

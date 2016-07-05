@@ -54,11 +54,10 @@ class UrlsController < ApplicationController
     unless @url_ready.present?
       @url              = Url.new(url_params)
       @url.slug         = @url.build_slug
-
       if @url.save
         @main_domain =  @url.url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)
         @url.update(
-          title: Mechanize.new.get(@url.url).title,
+          title: (Mechanize.new.get(@url.url).title rescue nil),
           user_id: (current_user.id rescue nil),
           main_domain: @main_domain.present? ? @main_domain[1] : @main_domain[0],
           valid_url: true          
@@ -67,7 +66,7 @@ class UrlsController < ApplicationController
         run_password if params[:url][:password_digest].present?
 
         respond_to do |format|
-          flash[:notice] = 'message'
+          flash[:notice] = 'Done for create URL'
           format.js 
         end
       else

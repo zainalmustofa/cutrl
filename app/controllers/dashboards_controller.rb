@@ -1,5 +1,5 @@
 class DashboardsController < ApplicationController
-  before_action :set_dashboard, only: [:show, :edit, :update, :destroy]
+  before_action :set_url, only: [:show_url, :edit, :update, :destroy]
   layout "dashboard"
 
   # GET /dashboards
@@ -54,14 +54,14 @@ class DashboardsController < ApplicationController
 
   # DELETE /dashboards/1
   def destroy
-    @dashboard.destroy
-    redirect_to dashboards_url, notice: 'Dashboard was successfully destroyed.'
+    @url.destroy
+    redirect_to dashboard_path, notice: 'URL was successfully destroyed.'
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_dashboard
-      @dashboard = current_user
+    def set_url
+      @url  = Url.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
