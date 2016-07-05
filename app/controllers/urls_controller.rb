@@ -135,7 +135,7 @@ class UrlsController < ApplicationController
   private
 
     def run_password
-      @url.password_digest.update(password_digest: (params[:url][:password_digest]))
+      @url.update(password_digest: (params[:url][:password_digest]))
     end
 
     def redirect_url
