@@ -1,4 +1,5 @@
 class DashboardsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_url, only: [:show_url, :edit, :update, :destroy]
   layout "dashboard"
 
